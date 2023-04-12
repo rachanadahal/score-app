@@ -5,7 +5,6 @@ void main() {
 }
 
 class ScoreHome extends StatefulWidget {
-  
   @override
   State<ScoreHome> createState() => _ScoreHomeState();
 }
@@ -15,7 +14,7 @@ class _ScoreHomeState extends State<ScoreHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Score Changer"),
+        title: const Text("Score"),
         centerTitle: true,
       ),
     );
