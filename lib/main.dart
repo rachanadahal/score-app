@@ -1,37 +1,113 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-  ));
+  runApp(ScoreApp());
 }
 
-class ScoreApp extends StatelessWidget {
-  // const ScoreApp({super.key});
+class ScoreApp extends StatefulWidget {
+  const ScoreApp({super.key});
 
   @override
+  State<ScoreApp> createState() => _ScoreAppState();
+}
+
+class _ScoreAppState extends State<ScoreApp> {
+  // const ScoreApp({super.key});
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Score App",
-      home: ScoreHome(),
+      home: ScoreChanger(),
     );
   }
 }
 
-class ScoreHome extends StatefulWidget {
-  // const ScoreHome({super.key});
+class ScoreChanger extends StatefulWidget {
+  const ScoreChanger({super.key});
 
   @override
-  State<ScoreHome> createState() => _ScoreHomeState();
+  State<ScoreChanger> createState() => _ScoreChangerState();
 }
 
-class _ScoreHomeState extends State<ScoreHome> {
+class _ScoreChangerState extends State<ScoreChanger> {
+  int value = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Score changer"),
         centerTitle: true,
+        backgroundColor: Colors.green,
+        title: const Text('Score Changer'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.restore_outlined),
+        onPressed: () {},
+      ),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 25,
+          ),
+          const Center(
+              child: Text(
+            "Score is",
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
+          Center(
+              child: Text(
+            value.toString(),
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 85,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
+          const SizedBox(
+            height: 25,
+          ),
+          // RaisedButton(
+          //   child: Text('Increase'),
+          //   onPressed: () {},
+          // )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    value++;
+                  });
+                },
+                child: const Text(
+                  'Increase',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (value > 0) {
+                      value--;
+                    }
+                  });
+                },
+                child: const Text(
+                  'Decrease',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
+          )
+        ],
       ),
     );
   }
